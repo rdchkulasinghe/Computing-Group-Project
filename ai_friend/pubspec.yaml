@@ -52,7 +52,11 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/images/
+    - assets/images/action.jpg
+    - assets/images/comedy.jpg
+    - assets/images/drama.jpg
+    - assets/images/horror.jpg
+    - assets/images/scifi.jpg
     - assets/icons/
     - assets/fonts/
 
