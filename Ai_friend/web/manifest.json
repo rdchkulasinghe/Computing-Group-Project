@@ -1,6 +1,6 @@
 {
-    "name": "initial_project",
-    "short_name": "initial_project",
+    "name": "ai_friend",
+    "short_name": "ai_friend",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

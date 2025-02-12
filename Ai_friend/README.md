@@ -1,4 +1,4 @@
-# initial_project
+# ai_friend
 
 A new Flutter project.
 

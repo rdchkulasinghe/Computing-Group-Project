@@ -1,4 +1,4 @@
-package com.example.initial_project
+package com.example.ai_friend
 
 import io.flutter.embedding.android.FlutterActivity
 
