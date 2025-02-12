@@ -63,7 +63,7 @@ class Start_1 extends StatelessWidget {
                           return Colors
                               .white; // Button turns white when pressed
                         }
-                        return Color(0xFFFFD700); // Default color (Gold)
+                        return Color(0xFF6E7191); // Default color of button
                       },
                     ),
                     shape: MaterialStateProperty.all(
