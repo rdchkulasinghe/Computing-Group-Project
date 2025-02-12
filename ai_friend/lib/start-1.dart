@@ -27,7 +27,7 @@ class Start_1 extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 137), // Space before TextField
+              SizedBox(height: 100), // Space before TextField
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32),
                 child: TextField(
@@ -42,7 +42,7 @@ class Start_1 extends StatelessWidget {
                     hintStyle: TextStyle(
                       color: Color(0xFF6E7191),
                       fontSize: 32,
-                      fontFamily: 'poetsenOne',
+                      fontFamily: 'ponnala',
                     ),
                     border: InputBorder.none, // Remove underline
                   ),

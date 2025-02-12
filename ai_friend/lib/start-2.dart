@@ -61,7 +61,7 @@ class Start1 extends StatelessWidget {
                     hintStyle: TextStyle(
                       color: Color(0xFF6E7191),
                       fontSize: 32,
-                      fontFamily: 'PoetsenOne',
+                      fontFamily: 'Ponnala',
                     ),
                     border: InputBorder.none, // Remove underline
                   ),
