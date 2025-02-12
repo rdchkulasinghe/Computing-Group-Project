@@ -23,7 +23,7 @@ class Start_1 extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'poetsen_one',
+                    fontFamily: 'PoetsenOne',
                   ),
                 ),
               ),
@@ -35,14 +35,14 @@ class Start_1 extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 32,
-                    fontFamily: 'poetsen_one',
+                    fontFamily: 'poetsenOne',
                   ),
                   decoration: InputDecoration(
                     hintText: 'Enter your name',
                     hintStyle: TextStyle(
                       color: Color(0xFF6E7191),
                       fontSize: 32,
-                      fontFamily: 'poetsen_one',
+                      fontFamily: 'poetsenOne',
                     ),
                     border: InputBorder.none, // Remove underline
                   ),
@@ -77,8 +77,8 @@ class Start_1 extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'poetsen_one',
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'poetsenOne',
                     ),
                   ),
                 ),
