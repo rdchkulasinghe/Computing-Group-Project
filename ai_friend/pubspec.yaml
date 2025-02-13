@@ -57,6 +57,7 @@ flutter:
     - assets/images/drama.jpg
     - assets/images/horror.jpg
     - assets/images/scifi.jpg
+    - assets/images/background.jpg
     - assets/icons/
     - assets/fonts/
 
