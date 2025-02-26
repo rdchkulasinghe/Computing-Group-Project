@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'signup_screen.dart';
 
 void main() {
   runApp(const MyApp());
