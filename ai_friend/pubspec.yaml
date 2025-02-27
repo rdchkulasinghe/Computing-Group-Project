@@ -55,6 +55,9 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/fonts/
+    - assets/images/hhhhj.png
+    - assets/images/
+
 
   uses-material-design: true
 

@@ -9,7 +9,7 @@ class Start_1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xFF1C1A3B),
+        backgroundColor: const Color.fromARGB(255, 28, 20, 151),
         body: SafeArea(
           child: Column(
             children: [
