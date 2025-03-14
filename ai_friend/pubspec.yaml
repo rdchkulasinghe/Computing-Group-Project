@@ -58,8 +58,6 @@ flutter:
     - assets/images/horror.jpg
     - assets/images/scifi.jpg
     - assets/images/background.jpg
-    - assets/icons/
-    - assets/fonts/
 
   uses-material-design: true
 

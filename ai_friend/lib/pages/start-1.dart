@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const Start1());
-}
 
-class Start1 extends StatelessWidget {
-  const Start1({super.key});
-
+class Start_1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: const Color(0xFF1C1A3B),
+        backgroundColor: Color(0xFF1C1A3B),
         body: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 109), // Space before text
-              const Align(
+              SizedBox(height: 109), // Position "Your Name" text
+              Align(
                 alignment: Alignment.center,
                 child: Text(
-                  'How old are you?',
+                  'Your name',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -29,48 +24,31 @@ class Start1 extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 50), // Space before additional text
-              const Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 32),
-                  child: Text(
-                    'We need this information to make your experience more relevant and safe.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal,
-                      fontFamily: 'PoetsenOne',
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 60), // Space before input field
-              const Padding(
+              SizedBox(height: 100), // Space before TextField
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32),
                 child: TextField(
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 32,
-                    fontFamily: 'PoetsenOne',
+                    fontFamily: 'poetsenOne',
                   ),
                   decoration: InputDecoration(
-                    hintText: 'Enter your age',
+                    hintText: 'Enter your name',
                     hintStyle: TextStyle(
                       color: Color(0xFF6E7191),
                       fontSize: 32,
-                      fontFamily: 'Ponnala',
+                      fontFamily: 'ponnala',
                     ),
                     border: InputBorder.none, // Remove underline
                   ),
                 ),
               ),
-              const Expanded(child: SizedBox()), // Pushes button to bottom
+              Expanded(child: SizedBox()), // Pushes button to the bottom
               SizedBox(
-                width: 275, // Button width
-                height: 64, // Button height
+                width: 275, // Set button width
+                height: 64, // Set button height
                 child: ElevatedButton(
                   onPressed: () {
                     debugPrint("Continue Button Pressed");
@@ -82,7 +60,7 @@ class Start1 extends StatelessWidget {
                           return Colors
                               .white; // Button turns white when pressed
                         }
-                        return const Color(0xFF6E7191); // Default color
+                        return Color(0xFF6E7191); // Default color of button
                       },
                     ),
                     shape: MaterialStateProperty.all(
@@ -91,18 +69,18 @@ class Start1 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Continue',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 24,
                       fontWeight: FontWeight.normal,
-                      fontFamily: 'PoetsenOne',
+                      fontFamily: 'poetsenOne',
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 40), // Space from bottom
+              SizedBox(height: 40), // Space from bottom
             ],
           ),
         ),
