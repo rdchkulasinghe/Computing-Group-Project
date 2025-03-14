@@ -102,6 +102,7 @@ class LoginPage extends StatelessWidget {
                             ), // Error Message
                           );
                         }
+                         // redirect to the start page 1-2-3-4-5--and then daiary
                       },
                     ),
                     SizedBox(height: 20),

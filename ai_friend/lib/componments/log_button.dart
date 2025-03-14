@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../componments/log_button.dart';
 
 class SigninBtn extends StatelessWidget {
   final Function()? onTap;
@@ -15,7 +16,6 @@ class SigninBtn extends StatelessWidget {
           color: const Color.fromARGB(255, 0, 0, 0),
           borderRadius: BorderRadius.circular(10),
         ),
-        
         child: const Center(
           child: Text(
             "Sign In",
@@ -24,11 +24,9 @@ class SigninBtn extends StatelessWidget {
               fontWeight: FontWeight.w500,
               fontSize: 20,
             ),
-
           ),
         ),
       ),
     );
   }
 }
-
