@@ -1,19 +1,37 @@
 import 'package:flutter/material.dart';
 
-class MovieTypeScreen extends StatefulWidget {
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
-  _MovieTypeScreenState createState() => _MovieTypeScreenState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const MovieTypeScreen(),
+    );
+  }
+}
+
+class MovieTypeScreen extends StatefulWidget {
+  const MovieTypeScreen({super.key});
+
+  @override
+  State<MovieTypeScreen> createState() => _MovieTypeScreenState();
 }
 
 class _MovieTypeScreenState extends State<MovieTypeScreen> {
   int? selectedIndex;
 
   final List<Map<String, String>> movieOptions = [
-    {"text": "Action/ Adventure", "image": "assets/action.jpg"},
-    {"text": "Drama/ Romance", "image": "assets/drama.jpg"},
-    {"text": "Comedy", "image": "assets/comedy.jpg"},
-    {"text": "Science fiction/ Fantasy", "image": "assets/scifi.jpg"},
-    {"text": "Horror/ Thriller", "image": "assets/horror.jpg"},
+    {"text": "Action/ Adventure", "image": "assets/images/action.jpg"},
+    {"text": "Drama/ Romance", "image": "assets/images/drama.jpg"},
+    {"text": "Comedy", "image": "assets/images/comedy.jpg"},
+    {"text": "Science fiction/ Fantasy", "image": "assets/images/scifi.jpg"},
+    {"text": "Horror/ Thriller", "image": "assets/images/horror.jpg"},
   ];
 
   void onSelect(int index) {
@@ -35,10 +53,11 @@ class _MovieTypeScreenState extends State<MovieTypeScreen> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(Icons.arrow_back, color: Colors.white, size: 30),
+              child:
+                  const Icon(Icons.arrow_back, color: Colors.white, size: 30),
             ),
-            SizedBox(height: 20),
-            Center(
+            const SizedBox(height: 20),
+            const Center(
               child: Text(
                 "What is your favorite movie type?",
                 textAlign: TextAlign.center,
@@ -49,7 +68,7 @@ class _MovieTypeScreenState extends State<MovieTypeScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 itemCount: movieOptions.length,
@@ -58,8 +77,9 @@ class _MovieTypeScreenState extends State<MovieTypeScreen> {
                   return GestureDetector(
                     onTap: () => onSelect(index),
                     child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 8),
-                      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      margin: const EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(color: Colors.white),
@@ -75,7 +95,7 @@ class _MovieTypeScreenState extends State<MovieTypeScreen> {
                       child: Center(
                         child: Text(
                           movieOptions[index]["text"]!,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -87,17 +107,17 @@ class _MovieTypeScreenState extends State<MovieTypeScreen> {
                 },
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             GestureDetector(
               onTap: selectedIndex != null ? () {} : null,
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 15),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 decoration: BoxDecoration(
                   color: selectedIndex != null ? Colors.blue : Colors.grey,
                   borderRadius: BorderRadius.circular(25),
                 ),
-                child: Center(
+                child: const Center(
                   child: Text(
                     "Continue",
                     style: TextStyle(color: Colors.white, fontSize: 18),

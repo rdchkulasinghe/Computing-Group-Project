@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(Start_1());
+}
 
 class Start_1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xFF1C1A3B),
+        backgroundColor: const Color.fromARGB(255, 28, 20, 151),
         body: SafeArea(
           child: Column(
             children: [

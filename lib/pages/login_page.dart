@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../componments/log_textfields.dart';
-import '../componments/log_button.dart';
-import '../componments/log_forgot_password.dart';
+import '../login_componments/log_textfields.dart';
+import '../login_componments/log_button.dart';
+import '../login_componments/log_forgot_password.dart';
 
-/*void main() {
+void main() {
   runApp(LoginPage());
-}*/
+}
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -18,7 +18,6 @@ class LoginPage extends StatelessWidget {
   bool _validateInput() {
     String email = emailController.text; //  email text fields
     String password = passwordController.text; // passowrd
-
     // validation
     if (email.isEmpty || !isValidEmail(email)) {
       return false;
@@ -102,7 +101,6 @@ class LoginPage extends StatelessWidget {
                             ), // Error Message
                           );
                         }
-                         // redirect to the start page 1-2-3-4-5--and then daiary
                       },
                     ),
                     SizedBox(height: 20),
