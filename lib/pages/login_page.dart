@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../login_componments/log_textfields.dart';
 import '../login_componments/log_button.dart';
 import '../login_componments/log_forgot_password.dart';
+// import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth and rthen errors will be fixed
+//
 
 void main() {
   runApp(LoginPage());
@@ -9,7 +11,10 @@ void main() {
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-  // ----------------------------------------functions-----------
+
+  // Firebase Authentication Instance
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   // text editing controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -38,17 +43,44 @@ class LoginPage extends StatelessWidget {
 
   // sing in user method
   Future<void> signUserIn(BuildContext context) async {
-    // Simulate a successful login (replace with  actual logic later)
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      // User signed in successfully
+      debugPrint("Message:---Sign in--> next page");
+      // Navigate to the next page or perform other actions
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = 'An error occurred.';
+      if (e.code == 'user-not-found') {
+        errorMessage = 'No user found for that email.';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Wrong password provided for that user.';
+      } else if (e.code == 'invalid-email') {
+        errorMessage = 'The email address is badly formatted.';
+      }else if (e.code == 'user-disabled'){
+        errorMessage = 'User account has been disabled';
+      }
 
-    await Future.delayed(const Duration(seconds: 1)); // a delay
-
-    // singin message
-    debugPrint("Message:---Sign in--> next page");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(errorMessage),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('An unexpected error occurred.'),
+        ),
+      );
+    }
   }
 
   void forgotPass() {
     // content
   }
+
   //-------------------------------UI start from here--------
   @override
   Widget build(BuildContext context) {
@@ -66,29 +98,22 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 50),
-
                     LoginTextfield(
                       controllarFor: emailController,
                       hintText: 'Enter Your Email',
                       obscureText: false,
                       textBoxName: 'Email:',
                     ), // Email
-
                     SizedBox(height: 5),
-
                     LoginTextfield(
                       controllarFor: passwordController,
                       hintText: 'Enter Your Password',
                       obscureText: true,
                       textBoxName: 'Password:',
                     ), // password
-
                     SizedBox(height: 13),
-
                     LoginForgotPassword(onTapp: forgotPass),
-
                     SizedBox(height: 50),
-
                     SigninBtn(
                       onTap: () async {
                         // Perform Validation
