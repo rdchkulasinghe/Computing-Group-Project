@@ -1,9 +1,9 @@
-import 'package:ai_friend/main.dart';
+import 'package:ai_friend/chatscreen.dart';
 import 'package:flutter/material.dart';
 
 class DiaryScreen extends StatelessWidget {
   // Add a key parameter to the constructor
-  DiaryScreen({Key? key}) : super(key: key);
+  DiaryScreen({super.key});
 
   final List<String> entries =
       List.generate(4, (index) => "I have big plan for this weekend");

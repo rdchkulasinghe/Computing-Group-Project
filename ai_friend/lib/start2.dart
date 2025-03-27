@@ -1,11 +1,8 @@
+import 'package:ai_friend/enter_name.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const Start1());
-}
-
-class Start1 extends StatelessWidget {
-  const Start1({super.key});
+class SelectAge extends StatelessWidget {
+  const SelectAge({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +70,10 @@ class Start1 extends StatelessWidget {
                 height: 64, // Button height
                 child: ElevatedButton(
                   onPressed: () {
-                    debugPrint("Continue Button Pressed");
+                    print("next page");
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => EnterNamePage()),
+                    );
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color>(

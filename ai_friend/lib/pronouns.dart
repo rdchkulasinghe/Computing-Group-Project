@@ -1,39 +1,33 @@
+import 'package:ai_friend/free_time.dart';
 import 'package:flutter/material.dart';
+//import 'package:ai_friend/select_movie.dart'; // Import your SelectMoviePage
 
-void main() {
-  runApp(const PronounSelectionApp());
-}
+class PronounSelectionPage extends StatefulWidget {
+  final String name;
+  final int age;
 
-class PronounSelectionApp extends StatelessWidget {
-  const PronounSelectionApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const PronounSelectionScreen(),
-    );
-  }
-}
-
-class PronounSelectionScreen extends StatefulWidget {
-  const PronounSelectionScreen({super.key});
+  const PronounSelectionPage({
+    super.key,
+    required this.name,
+    required this.age,
+  });
 
   @override
-  _PronounSelectionScreenState createState() => _PronounSelectionScreenState();
+  State<PronounSelectionPage> createState() => _PronounSelectionPageState();
 }
 
-class _PronounSelectionScreenState extends State<PronounSelectionScreen> {
+class _PronounSelectionPageState extends State<PronounSelectionPage> {
   String? selectedPronoun;
+  bool isButtonEnabled = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 28, 20, 151),
+      backgroundColor: const Color(0xFF1C1A3B), // Dark background
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 109),
+            const SizedBox(height: 100), // Space from top
             const Align(
               alignment: Alignment.center,
               child: Text(
@@ -47,7 +41,7 @@ class _PronounSelectionScreenState extends State<PronounSelectionScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 50), // Space before additional text
             const Align(
               alignment: Alignment.center,
               child: Padding(
@@ -64,29 +58,32 @@ class _PronounSelectionScreenState extends State<PronounSelectionScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 60), // Space before buttons
             _buildPronounButton("She / Her"),
             _buildPronounButton("He / Him"),
             _buildPronounButton("They / Them"),
-            const Expanded(child: SizedBox()),
+            const Spacer(), // Push button to bottom
             SizedBox(
-              width: 275,
-              height: 64,
+              width: 275, // Button width
+              height: 64, // Button height
               child: ElevatedButton(
-                onPressed: selectedPronoun != null ? _onContinuePressed : null,
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return Colors.white;
+                onPressed: isButtonEnabled
+                    ? () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => FreeTimePage(
+                              name: widget.name,
+                              age: widget.age,
+                              pronouns: selectedPronoun!,
+                            ),
+                          ),
+                        );
                       }
-                      return const Color(0xFF6E7191);
-                    },
-                  ),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
+                    : null, // Disabled if no pronoun selected
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF6E7191),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
                   ),
                 ),
                 child: const Text(
@@ -94,13 +91,12 @@ class _PronounSelectionScreenState extends State<PronounSelectionScreen> {
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 24,
-                    fontWeight: FontWeight.normal,
                     fontFamily: 'PoetsenOne',
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 40), // Bottom spacing
           ],
         ),
       ),
@@ -112,8 +108,9 @@ class _PronounSelectionScreenState extends State<PronounSelectionScreen> {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              selectedPronoun == pronoun ? Colors.blue : Colors.grey[200],
+          backgroundColor: selectedPronoun == pronoun
+              ? Colors.blue
+              : const Color(0xFF6E7191),
           foregroundColor:
               selectedPronoun == pronoun ? Colors.white : Colors.black,
           minimumSize: const Size(double.infinity, 50),
@@ -121,6 +118,7 @@ class _PronounSelectionScreenState extends State<PronounSelectionScreen> {
         onPressed: () {
           setState(() {
             selectedPronoun = pronoun;
+            isButtonEnabled = true;
           });
         },
         child: Text(
@@ -130,15 +128,6 @@ class _PronounSelectionScreenState extends State<PronounSelectionScreen> {
             fontFamily: 'PoetsenOne',
           ),
         ),
-      ),
-    );
-  }
-
-  void _onContinuePressed() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("You selected: $selectedPronoun"),
-        backgroundColor: Colors.blue,
       ),
     );
   }
