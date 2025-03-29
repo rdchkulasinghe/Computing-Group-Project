@@ -27,12 +27,12 @@ class TextDisplayScreen extends StatelessWidget {
         children: [
           // Background Image
           Image.asset(
-            'assets/images/background.jpg', // Make sure the path is correct
+            'assets/background.jpg', // Make sure the path is correct
             fit: BoxFit.cover,
           ),
           // Dark overlay for readability
           Container(
-            color: Colors.black.withAlpha(128),
+            color: Colors.black.withAlpha(128), 
           ),
           // Content
           Center(
@@ -71,8 +71,7 @@ class TextDisplayScreen extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.deepPurple,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     ),
                     child: const Text(
                       'Save',

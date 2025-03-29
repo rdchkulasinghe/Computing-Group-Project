@@ -29,4 +29,4 @@ Text("you are now in forgotpass page"),
       ),
     );
   }
-} //
+}

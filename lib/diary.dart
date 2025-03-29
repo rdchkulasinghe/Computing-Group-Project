@@ -1,20 +1,10 @@
+import 'package:ai_friend/chatscreen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DiaryScreen(),
-    );
-  }
-}
-
 class DiaryScreen extends StatelessWidget {
+  // Add a key parameter to the constructor
+  DiaryScreen({super.key});
+
   final List<String> entries =
       List.generate(4, (index) => "I have big plan for this weekend");
   final List<String> dates = List.generate(4, (index) => "3rd March 2024");
@@ -41,9 +31,16 @@ class DiaryScreen extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: EdgeInsets.only(left: 16),
-                child: Icon(Icons.chat_bubble, color: Colors.white),
-              ),
+                  padding: EdgeInsets.only(left: 16),
+                  child: IconButton(
+                    icon: Icon(Icons.chat_bubble, color: Colors.white),
+                    onPressed: () {
+                      print("chat icon pressed");
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ChatScreen()),
+                      );
+                    },
+                  )),
             ),
             Text(
               "Diary",
