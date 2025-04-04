@@ -12,13 +12,13 @@ class SigninBtn extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 10.0),
         padding: EdgeInsets.symmetric(vertical: 25),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 0, 0, 0),
+          color: const Color.fromARGB(138, 0, 0, 0),
           borderRadius: BorderRadius.circular(10),
         ),
         
         child: const Center(
           child: Text(
-            "Sign In",
+            "Login",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,

@@ -11,6 +11,8 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+windows/flutter/
+macos/flutter/
 
 # IntelliJ related
 *.iml
@@ -32,14 +34,30 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.dart_tool
+.dart_tool/
 
 # Symbolication related
 app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+.vscode/settings.json
+**/settings.json
 
 # Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase Specific
+lib/firebase_options.dart
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+# firebase.json should be commited.
+
+# Keystore
+*.keystore
+
+# Gradle cache
+.gradle/
