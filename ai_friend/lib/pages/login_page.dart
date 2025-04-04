@@ -1,13 +1,16 @@
+/*----/*----This works backend but firebase authentication should have details /user should have signed in earlier---*/---*/
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../componments/forgot_pass.dart';
 import '../componments/log_textfields.dart';
 import '../componments/log_button.dart';
-import '../componments/log_forgot_password.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:email_validator/email_validator.dart';
+
+
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -15,7 +18,7 @@ class LoginPage extends StatelessWidget {
     String email = emailController.text;
     String password = passwordController.text;
 
-    if (email.isEmpty || !EmailValidator.validate(email)) {
+    if (email.isEmpty || !isValidEmail(email)) {
       return false;
     }
 
@@ -25,11 +28,17 @@ class LoginPage extends StatelessWidget {
     return true;
   }
 
+  bool isValidEmail(String email) {
+    final emailRegExp = RegExp(
+        r"^[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
+    return emailRegExp.hasMatch(email);
+  }
+
   Future<void> signUserIn(BuildContext context) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+      await _auth.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
       );
       debugPrint("Message:---Sign in--> next page");
     } on FirebaseAuthException catch (e) {
@@ -38,55 +47,24 @@ class LoginPage extends StatelessWidget {
         errorMessage = 'No user found for that email.';
       } else if (e.code == 'wrong-password') {
         errorMessage = 'Wrong password provided for that user.';
-      } else {
-        errorMessage = e.message ?? errorMessage;
+      } else if (e.code == 'invalid-email') {
+        errorMessage = 'The email address is badly formatted.';
+      } else if (e.code == 'user-disabled') {
+        errorMessage = 'User account has been disabled';
       }
+
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(errorMessage)),
+        SnackBar(
+          content: Text(errorMessage),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('An unexpected error occurred.'),
+        ),
       );
     }
-  }
-
-  void forgotPass(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Reset Password"),
-        content: const Text("Enter your email to receive a password reset link."),
-        actions: [
-          TextField(
-            controller: emailController,
-            decoration: const InputDecoration(labelText: 'Email'),
-          ),
-          TextButton(
-            onPressed: () async {
-              try {
-                await FirebaseAuth.instance.sendPasswordResetEmail(
-                  email: emailController.text,
-                );
-                Navigator.of(context).pop();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text(
-                          'Password reset link sent to your email.')),
-                );
-              } on FirebaseAuthException catch (e) {
-                String errorMessage = 'An error occurred.';
-                errorMessage = e.message ?? errorMessage;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Error: $errorMessage')),
-                );
-              }
-            },
-            child: const Text('Send'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
-          ),
-        ],
-      ),
-    );
   }
 
   @override
@@ -117,7 +95,7 @@ class LoginPage extends StatelessWidget {
                       textBoxName: 'Password:',
                     ),
                     SizedBox(height: 13),
-                    LoginForgotPassword(onTapp: () => forgotPass(context)),
+                    LoginForgotPassword2 (onTapp: (){}),
                     SizedBox(height: 50),
                     SigninBtn(
                       onTap: () async {
