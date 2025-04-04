@@ -7,8 +7,8 @@ import '../componments/log_button.dart';
 
 
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final emailController = TextEditingController();
