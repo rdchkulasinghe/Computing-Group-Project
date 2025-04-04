@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../componments/forgot_pass.dart';
-import '../componments/log_textfields.dart';
-import '../componments/log_button.dart';
+import '../components/log_textfields.dart';
+import '../components/log_button.dart';
 
 
 
