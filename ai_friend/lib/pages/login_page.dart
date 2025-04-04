@@ -70,7 +70,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 13, 21, 31),
+      backgroundColor: Color.fromARGB(255, 20, 42, 70),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

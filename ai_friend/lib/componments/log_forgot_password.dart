@@ -82,11 +82,11 @@ class LoginForgotPassword2 extends StatelessWidget {
             child: Text(
               "Forgot Password?",
               style: TextStyle(
-                color: Color.fromARGB(255, 95, 95, 95),
+                color:Color.fromARGB(255, 158, 134, 134),
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
                 decoration: TextDecoration.underline,
-                decorationColor: Color.fromARGB(255, 95, 95, 95),
+                decorationColor: Color.fromARGB(255, 158, 134, 134),
                 decorationStyle: TextDecorationStyle.solid,
                 decorationThickness: 2.0,
               ),

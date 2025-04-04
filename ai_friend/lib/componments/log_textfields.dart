@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class LoginTextfield extends StatelessWidget {
   final dynamic controllarFor; // what is dynamic , what happnes withouth it?
   final String hintText;
@@ -29,7 +27,7 @@ class LoginTextfield extends StatelessWidget {
              textBoxName,
              style: TextStyle(
              color: Colors.white70,
-             fontSize: 16.0,
+             fontSize: 18.0,
              fontWeight: FontWeight.w500,
             ),
             ),
