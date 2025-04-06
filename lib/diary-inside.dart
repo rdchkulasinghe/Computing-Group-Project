@@ -5,85 +5,178 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const TextDisplayScreen(),
+      home: const DiaryScreen(),
+      theme: ThemeData(
+        fontFamily: 'sans-serif',
+        scaffoldBackgroundColor: Colors.black, // Fallback background
+      ),
     );
   }
 }
 
-class TextDisplayScreen extends StatelessWidget {
-  const TextDisplayScreen({super.key});
+class DiaryScreen extends StatefulWidget {
+  const DiaryScreen({Key? key}) : super(key: key);
+
+  @override
+  _DiaryScreenState createState() => _DiaryScreenState();
+}
+
+class _DiaryScreenState extends State<DiaryScreen> {
+  final TextEditingController _controller = TextEditingController();
+  bool _isEditing = false;
+  bool _isSaving = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadInitialText();
+  }
+
+  Future<void> _loadInitialText() async {
+    // In a real app, you would load from storage here
+    _controller.text = "I have big plans for this weekend.";
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _saveEntry() async {
+    if (_controller.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter some text')),
+      );
+      return;
+    }
+
+    setState(() => _isSaving = true);
+
+    // Simulate network/database delay
+    await Future.delayed(const Duration(seconds: 1));
+
+    setState(() {
+      _isEditing = false;
+      _isSaving = false;
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Diary entry saved'),
+        action: SnackBarAction(
+          label: 'OK',
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        fit: StackFit.expand,
         children: [
-          // Background Image
-          Image.asset(
-            'assets/background.jpg', // Make sure the path is correct
-            fit: BoxFit.cover,
+          // Background with error handling
+          Positioned.fill(
+            child: Builder(
+              builder: (context) {
+                try {
+                  return ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.3),
+                      BlendMode.darken,
+                    ),
+                    child: Image.asset(
+                      "assets/background.jpg",
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          Container(color: Colors.grey[900]),
+                    ),
+                  );
+                } catch (e) {
+                  return Container(color: Colors.grey[900]);
+                }
+              },
+            ),
           ),
-          // Dark overlay for readability
-          Container(
-            color: Colors.black.withAlpha(128), 
-          ),
-          // Content
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    '3rd March 2024',
-                    style: TextStyle(color: Colors.white70, fontSize: 18),
+
+          SafeArea(
+            child: Column(
+              children: [
+                AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  leading: IconButton(
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    onPressed: () => Navigator.pop(context),
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'I have big plan for this weekend',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'vbd sd bs d hjhjk vhjkuihu bhsdbd sds nbsjdbnk hjblihug.\n\n'
-                    'nsbdjkd dbsdjkhksd jjnkjjhn bnskjsd sms bjkdsk fcgyhs bgdhwdwv gewv wfwgwyufw whgywww bwywynyhvw hywh yhwwwww yuuwhfwuf jni ojikw iuwb iuknjub8eij egw fwey.',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                      height: 1.5,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 30),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple,
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                    ),
-                    child: const Text(
-                      'Save',
-                      style: TextStyle(fontSize: 18),
+                  actions: [
+                    if (!_isEditing)
+                      IconButton(
+                        icon: const Icon(Icons.edit, color: Colors.white),
+                        onPressed: () => setState(() => _isEditing = true),
+                      ),
+                  ],
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: _controller,
+                      maxLines: null,
+                      readOnly: !_isEditing,
+                      autofocus: _isEditing,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Write your diary entry here...',
+                        hintStyle: TextStyle(
+                          color: Colors.white.withOpacity(0.7),
+                          fontSize: 16,
+                        ),
+                      ),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        height: 1.5,
+                      ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
       ),
+      floatingActionButton: _isEditing
+          ? FloatingActionButton.extended(
+              onPressed: _isSaving ? null : _saveEntry,
+              backgroundColor: Colors.blue[700],
+              icon: _isSaving
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : const Icon(Icons.save, color: Colors.white),
+              label: Text(
+                _isSaving ? 'Saving...' : 'Save',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          : null,
     );
   }
 }
