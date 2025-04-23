@@ -1,0 +1,2 @@
+D:/1. Uni work/noGit/ai_friend/android/app/.cxx/RelWithDebInfo/606qq4f5/x86/CMakeFiles/edit_cache.dir
+D:/1. Uni work/noGit/ai_friend/android/app/.cxx/RelWithDebInfo/606qq4f5/x86/CMakeFiles/rebuild_cache.dir
