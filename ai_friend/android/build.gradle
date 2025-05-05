@@ -1,3 +1,23 @@
+buildscript {
+    // Match Gradle's embedded Kotlin version
+    ext.kotlin_version = '1.9.20'  // Changed from 1.9.20 to match Gradle 8.4
+    
+    repositories {
+        google()
+        mavenCentral()
+    }
+    
+    dependencies {
+        // Updated to latest stable versions
+        classpath 'com.android.tools.build:gradle:8.2.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.4.1'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.9'
+        
+        // NOTE: Do not place your application dependencies here
+    }
+}
+
 allprojects {
     repositories {
         google()

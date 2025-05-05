@@ -6,6 +6,8 @@ class MovieTypePage extends StatefulWidget {
   final int age;
   final String pronouns;
   final String freeTime;
+  final String userId;
+  // final String email;
 
   const MovieTypePage({
     super.key,
@@ -13,6 +15,8 @@ class MovieTypePage extends StatefulWidget {
     required this.age,
     required this.pronouns,
     required this.freeTime,
+    required this.userId,
+    //required this.email,
   });
 
   @override
@@ -24,17 +28,17 @@ class _MovieTypePageState extends State<MovieTypePage> {
   bool isButtonEnabled = false;
 
   final List<Map<String, String>> movieOptions = [
-    {"text": "Action/Adventure", "image": "assets/action.jpg"},
-    {"text": "Drama/Romance", "image": "assets/drama.jpg"},
-    {"text": "Comedy", "image": "assets/comedy.jpg"},
-    {"text": "Science Fiction/Fantasy", "image": "assets/scifi.jpg"},
-    {"text": "Horror/Thriller", "image": "assets/horror.jpg"},
+    {"text": "Action/Adventure", "image": "assets/images/action.jpg"},
+    {"text": "Drama/Romance", "image": "assets/images/drama.jpg"},
+    {"text": "Comedy", "image": "assets/images/comedy.jpg"},
+    {"text": "Science Fiction/Fantasy", "image": "assets/images/scifi.jpg"},
+    {"text": "Horror/Thriller", "image": "assets/images/horror.jpg"},
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1C1A3B), // Consistent dark background
+      backgroundColor: Color.fromARGB(221, 28, 7, 188),
       body: SafeArea(
         child: Column(
           children: [
@@ -110,6 +114,8 @@ class _MovieTypePageState extends State<MovieTypePage> {
                           MaterialPageRoute(
                             builder: (context) => GenderSelectionPage(
                               name: widget.name,
+                              // email: widget.email,
+                              userId: widget.userId,
                               age: widget.age,
                               pronouns: widget.pronouns,
                               freeTime: widget.freeTime,

@@ -1,17 +1,19 @@
 import 'package:ai_friend/pronouns.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MaterialApp(
-    home: EnterAgePage(name: 'user'), // Provide a default name for testing
-  ));
-}
+//void main() {
+//  runApp(const MaterialApp(
+//    home: EnterAgePage(name: 'user'), // Provide a default name for testing
+//  ));
+//}
 
 class EnterAgePage extends StatefulWidget {
   final String name;
+  final String userId;
   const EnterAgePage({
     super.key,
     required this.name,
+    required this.userId,
   });
 
   @override
@@ -43,7 +45,7 @@ class _EnterAgePageState extends State<EnterAgePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1C1A3B),
+      backgroundColor: Color.fromARGB(221, 28, 7, 188),
       body: SafeArea(
         child: Column(
           children: [
@@ -109,6 +111,7 @@ class _EnterAgePageState extends State<EnterAgePage> {
                           MaterialPageRoute(
                             builder: (context) => PronounSelectionPage(
                               name: widget.name,
+                              userId: widget.userId,
                               age: int.parse(ageController.text),
                             ),
                           ),
