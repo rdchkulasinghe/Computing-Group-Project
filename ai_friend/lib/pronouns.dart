@@ -1,18 +1,15 @@
 import 'package:ai_friend/free_time.dart';
 import 'package:flutter/material.dart';
+//import 'package:ai_friend/select_movie.dart'; // Import your SelectMoviePage
 
 class PronounSelectionPage extends StatefulWidget {
   final String name;
-  //final String email;
-  final String userId;
   final int age;
 
   const PronounSelectionPage({
     super.key,
     required this.name,
-    required this.userId,
     required this.age,
-    // required this.email,
   });
 
   @override
@@ -26,7 +23,7 @@ class _PronounSelectionPageState extends State<PronounSelectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(221, 28, 7, 188),
+      backgroundColor: const Color(0xFF1C1A3B), // Dark background
       body: SafeArea(
         child: Column(
           children: [
@@ -76,7 +73,6 @@ class _PronounSelectionPageState extends State<PronounSelectionPage> {
                           MaterialPageRoute(
                             builder: (context) => FreeTimePage(
                               name: widget.name,
-                              userId: widget.userId,
                               age: widget.age,
                               pronouns: selectedPronoun!,
                             ),
@@ -100,7 +96,7 @@ class _PronounSelectionPageState extends State<PronounSelectionPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 40), // Bottom spacing
           ],
         ),
       ),

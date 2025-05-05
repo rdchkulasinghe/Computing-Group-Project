@@ -7,7 +7,6 @@ class GenderSelectionPage extends StatefulWidget {
   final String pronouns;
   final String freeTime;
   final String movieType;
-  final String userId;
 
   const GenderSelectionPage({
     super.key,
@@ -16,7 +15,6 @@ class GenderSelectionPage extends StatefulWidget {
     required this.pronouns,
     required this.freeTime,
     required this.movieType,
-    required this.userId,
   });
 
   @override
@@ -30,7 +28,7 @@ class _GenderSelectionPageState extends State<GenderSelectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(221, 28, 7, 188),
+      backgroundColor: const Color(0xFF1C1A3B), // Consistent dark background
       body: SafeArea(
         child: Column(
           children: [
@@ -74,7 +72,6 @@ class _GenderSelectionPageState extends State<GenderSelectionPage> {
                           MaterialPageRoute(
                             builder: (context) => NameAIFriendPage(
                               name: widget.name,
-                              userId: widget.userId,
                               age: widget.age,
                               pronouns: widget.pronouns,
                               freeTime: widget.freeTime,

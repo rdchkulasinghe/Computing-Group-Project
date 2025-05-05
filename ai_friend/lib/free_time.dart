@@ -5,14 +5,12 @@ class FreeTimePage extends StatefulWidget {
   final String name;
   final int age;
   final String pronouns;
-  final String userId;
 
   const FreeTimePage({
     super.key,
     required this.name,
     required this.age,
     required this.pronouns,
-    required this.userId,
   });
 
   @override
@@ -34,11 +32,11 @@ class _FreeTimePageState extends State<FreeTimePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(221, 28, 7, 188),
+      backgroundColor: const Color(0xFF1C1A3B), // Consistent dark background
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Align(
               alignment: Alignment.centerLeft,
               child: IconButton(
@@ -46,38 +44,39 @@ class _FreeTimePageState extends State<FreeTimePage> {
                 onPressed: () => Navigator.pop(context),
               ),
             ),
-            const SizedBox(height: 20),
-            const Text(
-              'How do you usually\nspend your free time?',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'PoetsenOne',
+            const SizedBox(height: 40),
+            const Align(
+              alignment: Alignment.center,
+              child: Text(
+                'How do you usually\nspend your free time?',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'PoetsenOne',
+                ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             Expanded(
               child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 itemCount: freeTimeOptions.length,
                 itemBuilder: (context, index) {
                   bool isSelected = selectedIndex == index;
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
+                    padding: const EdgeInsets.only(bottom: 16),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: isSelected
-                            ? Colors.blue.shade400
-                            : const Color(0xFF6E7191),
+                        backgroundColor:
+                            isSelected ? Colors.blue : const Color(0xFF6E7191),
                         foregroundColor: Colors.white,
-                        minimumSize: const Size(double.infinity, 70),
+                        minimumSize: const Size(double.infinity, 80),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
+                        padding: const EdgeInsets.symmetric(vertical: 20),
                       ),
                       onPressed: () {
                         setState(() {
@@ -85,71 +84,56 @@ class _FreeTimePageState extends State<FreeTimePage> {
                           isButtonEnabled = true;
                         });
                       },
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            freeTimeOptions[index]["image"]!,
-                            width: 36,
-                            height: 36,
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Icon(Icons.error, color: Colors.red),
-                          ),
-                          const SizedBox(width: 15),
-                          Text(
-                            freeTimeOptions[index]["text"]!,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'PoetsenOne',
-                            ),
-                          ),
-                        ],
+                      child: Text(
+                        freeTimeOptions[index]["text"]!,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'PoetsenOne',
+                        ),
                       ),
                     ),
                   );
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: SizedBox(
-                width: 250,
-                height: 55,
-                child: ElevatedButton(
-                  onPressed: isButtonEnabled
-                      ? () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => MovieTypePage(
-                                name: widget.name,
-                                userId: widget.userId,
-                                age: widget.age,
-                                pronouns: widget.pronouns,
-                                freeTime: freeTimeOptions[selectedIndex!]
-                                    ["text"]!,
-                              ),
+            const SizedBox(height: 30),
+            SizedBox(
+              width: 275,
+              height: 64,
+              child: ElevatedButton(
+                onPressed: isButtonEnabled
+                    ? () {
+                        // Navigate to next screen with all collected data
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => MovieTypePage(
+                              name: widget.name,
+                              age: widget.age,
+                              pronouns: widget.pronouns,
+                              freeTime: freeTimeOptions[selectedIndex!]
+                                  ["text"]!,
                             ),
-                          );
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: isButtonEnabled
-                        ? Colors.blue.shade400
-                        : Colors.grey.shade600,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+                          ),
+                        );
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF6E7191),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
                   ),
-                  child: const Text(
-                    'Continue',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'PoetsenOne',
-                    ),
+                ),
+                child: const Text(
+                  'Continue',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                    fontFamily: 'PoetsenOne',
                   ),
                 ),
               ),
             ),
+            const SizedBox(height: 40),
           ],
         ),
       ),

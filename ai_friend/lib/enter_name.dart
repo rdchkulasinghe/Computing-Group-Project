@@ -1,9 +1,14 @@
 import 'package:ai_friend/enter_age.dart';
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(const MaterialApp(
+    home: EnterNamePage(),
+  ));
+}
+
 class EnterNamePage extends StatefulWidget {
-  final String userId;
-  const EnterNamePage({super.key, required this.userId});
+  const EnterNamePage({super.key});
 
   @override
   State<EnterNamePage> createState() => _EnterNamePageState();
@@ -32,9 +37,10 @@ class _EnterNamePageState extends State<EnterNamePage> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(221, 28, 7, 188),
+      backgroundColor: const Color(0xFF1C1A3B),
       body: SafeArea(
         child: Column(
           children: [
@@ -83,8 +89,7 @@ class _EnterNamePageState extends State<EnterNamePage> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => EnterAgePage(
-                              userId: widget.userId,
-                              name: nameController.text.trim(),
+                              name: nameController.text.trim(), // pass name
                             ),
                           ),
                         );
